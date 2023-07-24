@@ -67,8 +67,8 @@ def start_training(character):
     commands = {'attack': character.attack, 'defence': character.defence, 'special': character.special}
     while cmd != 'skip':
         cmd = input('Введи команду: ')
-        if cmd in commands[cmd]:
-            print(commands[cmd](char_name, char_class))
+        if cmd in commands:
+            return commands[cmd]()
     return 'Тренировка окончена.'
 
 def choice_char_class(char_name: str) -> Character:
@@ -96,14 +96,13 @@ if __name__ == '__main__':
     print('Приветствую тебя, искатель приключений!')
     print('Прежде чем начать игру...')
     char_name: str = input('...назови себя: ')
-    print(f'Здравствуй, {choice_char_class(char_name)}! '
+    print(f'Здравствуй, {char_name}! '
           'Сейчас твоя выносливость — 80, атака — 5 и защита — 10.')
     print('Ты можешь выбрать один из трёх путей силы:')
     print('Воитель, Маг, Лекарь')
     char_class: str = choice_char_class(char_name)
-    print(start_training(char_name, char_class))
+    print(start_training(char_class))
 
 
 warrior = Warrior('Кодослав')
 print(warrior)
-print(warrior.attack())
